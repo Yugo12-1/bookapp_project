@@ -29,19 +29,24 @@ DjangoのFunction-Based Viewで実装したシンプルな本棚アプリです�
    source venv/Scripts/activate   # Windowsの場合
 
 2. 依存パッケージをインストール:
-pip install django
+   ```bash
+   pip install django
 
-3. マイグレーションを実行
-python3 manage.py makemigrations
-python3 manage.py migrate
+3. マイグレーションを実行 
+   ```bash
+   python3 manage.py makemigrations
+   python3 manage.py migrate
 
 4. スーパーユーザーの作成(DB)
-python manage.py createsuperuser
+   ```bash
+   python manage.py createsuperuser
 
 5. 開発サーバーの起動
-python manage.py runserver
+   ```bash
+   python manage.py runserver
 
 6. ブラウザアクセス
-http://127.0.0.1:8000/
+   ```bash
+   http://127.0.0.1:8000/
 
 

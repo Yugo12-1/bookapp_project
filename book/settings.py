@@ -121,3 +121,9 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# This is needed for custom user model
+AUTH_USER_MODEL = 'bookapp.BookUser'
+
+# This is needed for login_required. urls.py name='login'
+LOGIN_URL = 'login'

@@ -1,5 +1,6 @@
 from django import forms
-from .models import Book
+from .models import Book, BookUser
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 class BookForm(forms.ModelForm):
     class Meta:
@@ -8,3 +9,11 @@ class BookForm(forms.ModelForm):
         widgets = {
             'post_day': forms.DateInput(attrs={'type': 'date'})
         }
+
+class SignupForm(UserCreationForm):
+    class Meta:
+        model = BookUser
+        fields = ['username', 'password1', 'password2']
+
+class LoginForm(AuthenticationForm):
+    pass
