@@ -9,7 +9,7 @@ urlpatterns = [
     path('book/create/', create_func, name='create'),
     path('book/<int:pk>/delete/', delete_func, name='delete'),
     path('book/<int:pk>/edit/', edit_func, name='edit'),
-    path('book/signup/', signup_func, name='signup'),
-    path('book/login/', login_func, name='login'),
-    path('book/logout/', logout_func, name='logout')
+    path('account/signup/', signup_func, name='signup'),
+    path('account/login/', login_func, name='login'),
+    path('account/logout/', logout_func, name='logout')
 ]

@@ -10,8 +10,8 @@
     <p>著者: {{ book.author }}</p>
     <p>概要:<br>{{ book.description }}</p>
     <p>投稿日: {{ book.post_day }}</p>
-    <a href="{% url 'delete' pk=book.id %}">削除</a>
     <a href="{% url 'list' %}">リスト</a>
+    <a href="{% url 'delete' pk=book.id %}">削除</a>
     <a href="{% url 'edit' pk=book.id %}">編集</a>
 </div>
 {% endblock content %}
