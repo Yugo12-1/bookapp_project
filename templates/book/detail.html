@@ -14,4 +14,22 @@
     <a href="{% url 'delete' pk=book.id %}">削除</a>
     <a href="{% url 'edit' pk=book.id %}">編集</a>
 </div>
+<div class="container">
+    <h4>レビュー一覧</h4>
+    <a href="{% url 'review_create' book_id=book.id %}">レビューの作成</a>
+    {% if reviews %}
+        <ul>
+        {% for review in reviews %}
+            <li>
+                {{ review.review_user.username }}
+                評価: {{ review.reputation }}
+                {{ review.content }}<br>
+                <a href="{% url 'review_edit' book_id=book.id pk=review.id %}">レビューを編集する</a>
+                <a href="{% url 'review_delete' book_id=book.id pk=review.id %}">レビューを削除する</a>
+            </li>
+        {% endfor%}
+        </ul>
+    {% else %}
+    {% endif %}
+</div>
 {% endblock content %}

@@ -21,16 +21,28 @@ class Book(models.Model):
 class BookUser(AbstractUser):
     pass
 
-class Reveiw(models.Model):
+class Review(models.Model):
+    RATING_CHOICES = {
+        1: '★☆☆☆☆',
+        2: '★★☆☆☆',
+        3: '★★★☆☆',
+        4: '★★★★☆',
+        5: '★★★★★'
+    }
+    
     content = models.TextField()
     create_day = models.DateField(auto_now=False, auto_now_add=False)
-    reputation = models.IntegerField()
-    book = models.ForeignKey(Book, on_delete=models.CASCADE)
-    book_user = models.ForeignKey(
+    reputation = models.IntegerField(choices=RATING_CHOICES)
+    book = models.ForeignKey(
+        Book,
+        on_delete=models.CASCADE,
+        related_name='reviews'
+    )
+    review_user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
         related_name='reviews'
     )
 
     def __str__(self):
-        return f"{self.book.title} - {self.book_user.username}"
+        return f"{self.book.title} - {self.review_user.username}"
