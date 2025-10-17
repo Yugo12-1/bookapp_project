@@ -28,7 +28,12 @@ DELETE (delete_func())
 @login_required
 def list_func(request):
     books = Book.objects.all()
-    return render(request, 'book/list.html', {'books': books})
+    # Add total reputation
+    books_reputation = cal_avg_reputation(books)
+    return render(request, 'book/list.html', {
+        'books': books,
+        'books_reputation': books_reputation,
+    })
 
 @login_required
 def detail_func(request, pk):
@@ -198,3 +203,27 @@ def review_delete(request, book_id, pk):
         return redirect('detail', pk=book_id)
     else:
         return render(request, 'review/review_delete.html', {'book_id':book_id})
+
+"""
+Any other function
+"""
+
+def cal_avg_reputation(books):
+    books_reputation = {}
+    
+    for book in books:
+        # reviews querryset
+        reviews = book.reviews.all()
+        if reviews.exists():
+            total_reputation = 0
+            total_count = reviews.count()
+            for review in reviews:
+                total_reputation += review.reputation            
+            book_avg_reputation = round(total_reputation/total_count, 1)
+            books_reputation[book.id] = book_avg_reputation
+        else:
+            book_avg_reputation = 0
+        
+        books_reputation[book.id] = book_avg_reputation
+
+    return books_reputation
